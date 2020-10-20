@@ -6,10 +6,10 @@
 #include "Wav.h"
 #include "I2S.h"
 
-#define WM8960_ADDRESS  0x1A //AUDIO CODEC ADDRESS
+#define WM8960_ADDRESS 0x1A //AUDIO CODEC ADDRESS
 
-#define LEFT_INPUT_VOLUME 0X00 
-#define RIGHT_INPUT_VOLUME 0X01 
+#define LEFT_INPUT_VOLUME 0X00
+#define RIGHT_INPUT_VOLUME 0X01
 #define LOUT1_VOLUME 0X02
 #define ROUT1_VOLUME 0X03
 #define CLOCKING_1 0X04
@@ -25,7 +25,7 @@
 #define ALC1 0X11
 #define ALC2 0X12
 #define ALC3 0X13
-#define NOISE_GATE 0X14 
+#define NOISE_GATE 0X14
 #define LEFT_ADC_VOLUME 0X15
 #define RIGHT_ADC_VOLUME 0X16
 #define ADDITIONAL_CONTROL_1 0X17
@@ -35,8 +35,8 @@
 #define ADDITIONAL_CONTROL_3 0X1B
 #define ANTI_POP_1 0X1C
 #define ANTI_POP_2 0X1D
-#define ADCL_SIGNAL_PATH  0X20
-#define ADCR_SIGNAL_PATH  0X21
+#define ADCL_SIGNAL_PATH 0X20
+#define ADCR_SIGNAL_PATH 0X21
 #define LEFT_OUT_MIX 0X22
 #define RIGHT_OUT_MIX 0X25
 #define MONO_OUT_MIX_1 0X26
@@ -59,7 +59,7 @@
 
 uint8_t WM8960_Write_Reg(uint8_t reg, uint16_t dat);
 
-uint8_t WM8960_Init(void);
+uint8_t WM8960_Init(int DIN, int DOUT, int LRC, int BCLK);
 
 //Only play 16kHz 16bit stereo(2 channel)
 void WM8960_Play(String filename, char *buff);
@@ -68,3 +68,5 @@ void WM8960_Play(String filename, char *buff);
 void WM8960_Record(String filename, char *buff, int record_time);
 
 void WM8960_Alarm();
+
+bool WM8960_Volume(float L_volume,float R_volume);

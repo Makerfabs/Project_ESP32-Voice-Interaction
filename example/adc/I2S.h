@@ -21,15 +21,15 @@ Change for WM8960
 
 /// @parameter MODE : I2S_MODE_RX or I2S_MODE_TX
 /// @parameter BPS : I2S_BITS_PER_SAMPLE_16BIT or I2S_BITS_PER_SAMPLE_32BIT
-void I2S_Init();
+void I2S_Init(int DIN, int DOUT, int LRC, int BCLK);
 
 /// I2S_Read() for I2S_MODE_RX
 /// @parameter data: pointer to buffer
 /// @parameter numData: buffer size
 /// @return Number of bytes read
-int I2S_Read(char* data, int numData);
+int I2S_Read(char *data, int numData);
 
 /// I2S_Write() for I2S_MODE_TX
 /// @param data: pointer to buffer
 /// @param numData: buffer size
-void I2S_Write(char* data, int numData);
+void I2S_Write(char *data, int numData);

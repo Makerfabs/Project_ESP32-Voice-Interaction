@@ -29,9 +29,9 @@ uint8_t WM8960_Write_Reg(uint8_t reg, uint16_t dat)
     return res;
 }
 
-uint8_t WM8960_Init(void)
+uint8_t WM8960_Init(int DIN, int DOUT, int LRC, int BCLK)
 {
-    I2S_Init();
+    I2S_Init(DIN, DOUT, LRC, BCLK);
 
     uint8_t res;
     res = WM8960_Write_Reg(0x0f, 0x0000);
@@ -50,6 +50,7 @@ uint8_t WM8960_Init(void)
         return res;
 
     res = WM8960_Write_Reg(CLOCKING_1, 0x00DD); // Select 011011101
+    res = WM8960_Write_Reg(CLOCKING_2, 0x0080); // Select 011011101
     if (res == 0)
         Serial.println("WM8960 Configure clock");
     else
@@ -79,10 +80,18 @@ uint8_t WM8960_Init(void)
         return res;
 
     // Configure HP_L and HP_R OUTPUTS
-    res = WM8960_Write_Reg(LOUT1_VOLUME, 0x00FF | 0x0100);  //LOUT1 Volume Set
-    res += WM8960_Write_Reg(ROUT1_VOLUME, 0x00FF | 0x0100); //ROUT1 Volume Set
+    res = WM8960_Write_Reg(LOUT1_VOLUME, 0x0079 | 0x0100);  //LOUT1 Volume Set
+    res += WM8960_Write_Reg(ROUT1_VOLUME, 0x0079 | 0x0100); //ROUT1 Volume Set
     if (res == 0)
         Serial.println("WM8960 Configure HP_L and HP_R OUTPUTS");
+    else
+        return res;
+
+    // Configure SPK_RP and SPK_RN
+    res = WM8960_Write_Reg(LOUT2_VOLUME, 0x0079 | 0x0100); //Left Speaker Volume
+    res += WM8960_Write_Reg(ROUT2_VOLUME, 0x0079 | 0x0100); //Right Speaker Volume
+    if (res == 0)
+        Serial.println("WM8960 Configure SPK_RP and SPK_RN");
     else
         return res;
 
@@ -110,7 +119,7 @@ uint8_t WM8960_Init(void)
         return res;
 
     // Jack Detect
-    res = WM8960_Write_Reg(ADDITIONAL_CONTROL_2, 1 << 6 | 0 << 5);
+    res = WM8960_Write_Reg(ADDITIONAL_CONTROL_2, 0 << 6 | 0 << 5);
     res += WM8960_Write_Reg(ADDITIONAL_CONTROL_1, 0x01C3);
     res += WM8960_Write_Reg(ADDITIONAL_CONTROL_4, 0x0009); //0x000D,0x0005
     if (res == 0)
@@ -137,6 +146,16 @@ uint8_t WM8960_Init(void)
     WM8960_Write_Reg(ADCR_SIGNAL_PATH, 0X0020 | 1 << 8 | 1 << 3);
 
     return 0;
+}
+
+
+bool WM8960_Volume(float L_volume,float R_volume)
+{
+  L_volume = L_volume * 0xff;
+  WM8960_Write_Reg(LEFT_DAC_VOLUME, (uint8_t)L_volume | 0x0100);
+  R_volume = R_volume * 0xff;
+  WM8960_Write_Reg(RIGHT_DAC_VOLUME, (uint8_t)R_volume | 0x0100);
+  return true;
 }
 
 void WM8960_Play(String filename, char *buff)

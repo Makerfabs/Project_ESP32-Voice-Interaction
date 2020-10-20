@@ -1,6 +1,6 @@
 #include "I2S.h"
 
-void I2S_Init()
+void I2S_Init(int DIN, int DOUT, int LRC, int BCLK)
 {
   uint8_t m_i2s_num = I2S_NUM_0; // i2s port number
   i2s_config_t i2s_config = {
@@ -15,16 +15,15 @@ void I2S_Init()
       .dma_buf_len = 1024,
       .use_apll = 1,
       .tx_desc_auto_clear = true,
-      .fixed_mclk = I2S_PIN_NO_CHANGE
-    };
+      .fixed_mclk = I2S_PIN_NO_CHANGE};
 
   Serial.println("using I2S_MODE");
   i2s_pin_config_t pin_config;
-  pin_config.bck_io_num = PIN_I2S_BCLK;
-  pin_config.ws_io_num = PIN_I2S_LRC;
+  pin_config.bck_io_num = BCLK;
+  pin_config.ws_io_num = LRC;
 
-  pin_config.data_out_num = PIN_I2S_DOUT;
-  pin_config.data_in_num = PIN_I2S_DIN;
+  pin_config.data_out_num = DOUT;
+  pin_config.data_in_num = DIN;
 
   i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
   i2s_set_pin(I2S_NUM_0, &pin_config);
