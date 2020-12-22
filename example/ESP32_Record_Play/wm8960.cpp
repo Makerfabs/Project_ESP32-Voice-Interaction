@@ -217,7 +217,7 @@ void WM8960_Alarm()
     int part_time = runtime;
     while (1)
     {
-        int16_t fy[2] = {10000, 60000};
+        int16_t fy[2] = {10000, 20000};
         size_t i2s_bytes_write = 1;
         for (int i = 0; i < 1000; i++)
         {
