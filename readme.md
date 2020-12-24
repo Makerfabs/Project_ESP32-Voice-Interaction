@@ -61,7 +61,6 @@ The two functions of recording pen and walkie-talkie are realized. The recorder 
 - Micro SD card (Part of the project)
 
 ## Compiler Options
-## 编译选项和库
 
 **If you have any questions，such as how to install the development board, how to download the code, how to install the library. Please refer to :[Makerfabs_FAQ](https://github.com/Makerfabs/Makerfabs_FAQ)**
 
