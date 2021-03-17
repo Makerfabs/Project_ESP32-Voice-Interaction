@@ -67,7 +67,7 @@ void WM8960_Play(String filename, char *buff);
 //Only record 16kHz 16bit stereo(2 channel)
 void WM8960_Record(String filename, char *buff, int record_time);
 
-void WM8960_Alarm();
+// void WM8960_Alarm();
 
 bool WM8960_Volume(float L_volume, float R_volume);
 

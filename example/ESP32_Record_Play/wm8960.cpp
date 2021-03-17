@@ -211,26 +211,26 @@ void WM8960_Record(String filename, char *buff, int record_time)
     file.close();
 }
 */
-void WM8960_Alarm()
-{
-    int runtime = millis();
-    int part_time = runtime;
-    while (1)
-    {
-        int16_t fy[2] = {10000, 20000};
-        size_t i2s_bytes_write = 1;
-        for (int i = 0; i < 1000; i++)
-        {
-            i2s_write(I2S_NUM_0, fy, 1, &i2s_bytes_write, 100);
-            fy[0]++;
-            fy[1]++;
-        }
-        if ((millis() - part_time) > 500)
-        {
-            Serial.print(".");
-            part_time = millis();
-        }
-        if ((millis() - runtime) > 3000)
-            return;
-    }
-}
+// void WM8960_Alarm()
+// {
+//     int runtime = millis();
+//     int part_time = runtime;
+//     while (1)
+//     {
+//         int16_t fy[2] = {10000, 20000};
+//         size_t i2s_bytes_write = 1;
+//         for (int i = 0; i < 1000; i++)
+//         {
+//             i2s_write(I2S_NUM_0, fy, 1, &i2s_bytes_write, 100);
+//             fy[0]++;
+//             fy[1]++;
+//         }
+//         if ((millis() - part_time) > 500)
+//         {
+//             Serial.print(".");
+//             part_time = millis();
+//         }
+//         if ((millis() - runtime) > 3000)
+//             return;
+//     }
+// }
