@@ -32,7 +32,7 @@ Note:
 
 Product Link ：[Voice Interaction Hat for Makepython](https://www.makerfabs.com/voice-interaction-hat-for-makepython.html) 
 
-Wiki Link :  [Voice_Interaction_Hat_for_MakePython](https://www.makerfabs.com/wiki/index.php?title=Voice_Interaction_Hat_for_MakePython) 
+Wiki Link :  [Voice_Interaction_Hat_for_MakePython](https://wiki.makerfabs.com/Voice_Interaction_Hat_for_MaESP_ESP32.html) 
 
 
 ESP32 Voice Interaction is an extended version with speakers and mics. The audio IC is WM8960. It has a button, SD card slot and a headphone jack.  It is convenient to produce MP3, interphone, recording pen and other items. 
