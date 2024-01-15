@@ -57,7 +57,7 @@ The two functions of recording pen and walkie-talkie are realized. The recorder 
 ## Equipment list
 
 - [MakePython ESP32](https://www.makerfabs.com/open-hardware/maboards/maesp.html)
-- [MakaPython Voice Interaction Hat]()
+- [MakaPython Voice Interaction Hat](https://www.makerfabs.com/voice-interaction-hat-for-makepython.html)
 - Micro SD card (Part of the project)
 
 ## Compiler Options
